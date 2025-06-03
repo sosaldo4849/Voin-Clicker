@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voin Clicker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="camouflage"></div>
+    <div class="sidebar">
+        <h2>Voin-Torg</h2>
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('upgrades')">Улучшения</button>
+            <button class="tab-button" onclick="showTab('bonus')">Бонусы</button>
+            <button class="tab-button" onclick="showTab('chevrons')">Шевроны</button>
+            <button class="tab-button" onclick="showTab('inventory')">Инвентарь</button>
+            <button class="tab-button" onclick="showTab('casino')">Казино</button>
+            <button class="tab-button" onclick="showTab('converter')">Конвертер</button>
+            <button class="tab-button" onclick="showTab('promo')">Промокод</button>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Voin Clicker</h1>
+        <div class="coin" id="coin">
+            <div class="tank" id="tank"></div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="score">
+            <span id="uah">₴0</span> | <span id="usd">$0</span> | <span id="eur">€0</span> | <span id="btc">₿0</span>
+        </div>
+        <div class="particles" id="particles"></div>
+        <div class="explosion" id="explosion"></div>
+    </div>
+    <div class="tab-container">
+        <div class="tab-content" id="upgrades">
+            <div class="upgrade">
+                <p>Двойной клик: 1 клик = 2 гривны</p>
+                <p>Стоимость: 150 ₴</p>
+                <button id="upgrade1">Купить</button>
+            </div>
+            <div class="upgrade">
+                <p>Тройной клик: 1 клик = 3 гривны</p>
+                <p>Стоимость: 350 ₴</p>
+                <button id="upgrade2">Купить</button>
+            </div>
+            <div class="upgrade">
+                <p>Мега-клик: 1 клик = 5 гривны</p>
+                <p>Стоимость: 1000 ₴</p>
+                <button id="upgrade3">Купить</button>
+            </div>
+        </div>
+        <div class="tab-content" id="bonus" style="display: none;">
+            <div class="upgrade">
+                <p>Бонус: 150 гривен каждую минуту</p>
+                <p>Стоимость: Бесплатно</p>
+                <button id="bonusButton">Получить</button>
+            </div>
+        </div>
+        <div class="tab-content" id="chevrons" style="display: none;">
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc3wV68TRQNjf_c0-BefAlVfPj0brl90HveQ&s');"></div>
+                <p>Шеврон: 3-я ОШБр</p>
+                <p>Стоимость: 500 ₴</p>
+                <button id="chevron1">Купить</button>
+            </div>
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://via.placeholder.com/100?text=24-ОМБр');"></div>
+                <p>Шеврон: 24-я ОМБр</p>
+                <p>Стоимость: 750 ₴</p>
+                <button id="chevron2">Купить</button>
+            </div>
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://via.placeholder.com/100?text=95-ОДШБр');"></div>
+                <p>Шеврон: 95-я ОДШБр</p>
+                <p>Стоимость: 1000 ₴</p>
+                <button id="chevron3">Купить</button>
+            </div>
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://via.placeholder.com/100?text=79-ОШБр');"></div>
+                <p>Шеврон: 79-я ОШБр</p>
+                <p>Стоимость: 1200 ₴</p>
+                <button id="chevron4">Купить</button>
+            </div>
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://via.placeholder.com/100?text=80-ОДШБр');"></div>
+                <p>Шеврон: 80-я ОДШБр</p>
+                <p>Стоимость: 1300 ₴</p>
+                <button id="chevron5">Купить</button>
+            </div>
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://via.placeholder.com/100?text=128-ОГШБр');"></div>
+                <p>Шеврон: 128-я ОГШБр</p>
+                <p>Стоимость: 1400 ₴</p>
+                <button id="chevron6">Купить</button>
+            </div>
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://via.placeholder.com/100?text=25-ОПДБр');"></div>
+                <p>Шеврон: 25-я ОПДБр</p>
+                <p>Стоимость: 1500 ₴</p>
+                <button id="chevron7">Купить</button>
+            </div>
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://via.placeholder.com/100?text=54-ОМБр');"></div>
+                <p>Шеврон: 54-я ОМБр</p>
+                <p>Стоимость: 1600 ₴</p>
+                <button id="chevron8">Купить</button>
+            </div>
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFzp_Z7FTq1Di77z8Z5jXSR8HaTmYYOAY4zQ&s');"></div>
+                <p>Шеврон: ПВК-СХІД</p>
+                <p>Стоимость: 7000 ₴</p>
+                <button id="chevron9">Купить</button>
+            </div>
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/97/Kraken_Special_Unit_Insignia.png');"></div>
+                <p>Шеврон: Kraken</p>
+                <p>Стоимость: 20 $</p>
+                <button id="chevron10">Купить</button>
+            </div>
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://shevron-print.com.ua/image/cache/catalog/import_yml/178/569/694/2/4320486870-shevron-17-tankovaya-450x450.jpg');"></div>
+                <p>Шеврон: 17 ОТБР</p>
+                <p>Стоимость: 1 ₿</p>
+                <button id="chevron11">Купить</button>
+            </div>
+            <div class="upgrade chevron">
+                <div class="chevron-preview" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/79/Emblem_of_the_Defense_Intelligence_of_Ukraine.png');"></div>
+                <p>Шеврон: ВРУ України</p>
+                <p>Стоимость: 2000 ₴</p>
+                <button id="chevron12">Купить</button>
+            </div>
+        </div>
+        <div class="tab-content" id="inventory" style="display: none;">
+            <div id="inventory-list"></div>
+        </div>
+        <div class="tab-content" id="casino" style="display: none;">
+            <div class="casino-container">
+                <h2 class="ultra-dep">ULTRA DEP</h2>
+                <div class="casino-background">
+                    <div class="casino-particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+                    <div class="casino-particle" style="top: 30%; left: 70%; animation-delay: 1s;"></div>
+                    <div class="casino-particle" style="top: 50%; left: 40%; animation-delay: 2s;"></div>
+                    <div class="casino-particle" style="top: 70%; left: 90%; animation-delay: 3s;"></div>
+                    <div class="casino-particle" style="top: 90%; left: 30%; animation-delay: 4s;"></div>
+                </div>
+                <p>Ставка (₴): <input type="number" id="betAmount" min="10" value="10"></p>
+                <button id="placeBet">Сделать ставку</button>
+                <div class="casino-effect" id="casinoEffect"></div>
+                <p id="casinoResult"></p>
+            </div>
+        </div>
+        <div class="tab-content" id="converter" style="display: none;">
+            <div class="converter-container">
+                <div class="converter-input">
+                    <input type="number" id="convertAmount" min="0" value="0" placeholder="Сумма">
+                    <select id="fromCurrency">
+                        <option value="uah">₴</option>
+                        <option value="usd">$</option>
+                        <option value="eur">€</option>
+                        <option value="btc">₿</option>
+                    </select>
+                    <span class="arrow">→</span>
+                    <select id="toCurrency">
+                        <option value="usd">$</option>
+                        <option value="eur">€</option>
+                        <option value="btc">₿</option>
+                        <option value="uah">₴</option>
+                    </select>
+                </div>
+                <button id="convertButton">Конвертировать</button>
+                <p id="convertResult"></p>
+            </div>
+        </div>
+        <div class="tab-content" id="promo" style="display: none;">
+            <div class="promo-container">
+                <p>Введите промокод:</p>
+                <input type="text" id="promoInput" placeholder="Промокод">
+                <button id="redeemPromo">Активировать</button>
+                <p id="promoResult"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        let uah = parseInt(localStorage.getItem('coinUah')) || 0;
+        let usd = parseInt(localStorage.getItem('coinUsd')) || 0;
+        let eur = parseInt(localStorage.getItem('coinEur')) || 0;
+        let btc = parseInt(localStorage.getItem('coinBtc')) || 0;
+        let clickValue = parseInt(localStorage.getItem('clickValue')) || 1;
+        let bonusTimer = parseInt(localStorage.getItem('bonusTimer')) || 0;
+        let clickStreak = 0;
+        let streakTimeout = null;
+        const uahElement = document.getElementById('uah');
+        const usdElement = document.getElementById('usd');
+        const eurElement = document.getElementById('eur');
+        const btcElement = document.getElementById('btc');
+        const coin = document.getElementById('coin');
+        const particlesContainer = document.getElementById('particles');
+        const explosionContainer = document.getElementById('explosion');
+        const inventoryList = document.getElementById('inventory-list');
+        const progressBar = document.getElementById('progress');
+        const tank = document.getElementById('tank');
+        const bonusButton = document.getElementById('bonusButton');
+        const placeBet = document.getElementById('placeBet');
+        const betAmount = document.getElementById('betAmount');
+        const casinoResult = document.getElementById('casinoResult');
+        const casinoEffect = document.getElementById('casinoEffect');
+        const convertAmount = document.getElementById('convertAmount');
+        const fromCurrency = document.getElementById('fromCurrency');
+        const toCurrency = document.getElementById('toCurrency');
+        const convertButton = document.getElementById('convertButton');
+        const convertResult = document.getElementById('convertResult');
+        const promoInput = document.getElementById('promoInput');
+        const redeemPromo = document.getElementById('redeemPromo');
+        const promoResult = document.getElementById('promoResult');
+        const upgradeButtons = [
+            { id: 'upgrade1', cost: 150, value: 2, bought: localStorage.getItem('upgrade1') === 'true' },
+            { id: 'upgrade2', cost: 350, value: 3, bought: localStorage.getItem('upgrade2') === 'true' },
+            { id: 'upgrade3', cost: 1000, value: 5, bought: localStorage.getItem('upgrade3') === 'true' }
+        ];
+        const chevronButtons = [
+            { id: 'chevron1', cost: 500, name: '3-я ОШБр', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc3wV68TRQNjf_c0-BefAlVfPj0brl90HveQ&s', bought: localStorage.getItem('chevron1') === 'true', currency: 'uah' },
+            { id: 'chevron2', cost: 750, name: '24-я ОМБр', image: 'https://via.placeholder.com/100?text=24-ОМБр', bought: localStorage.getItem('chevron2') === 'true', currency: 'uah' },
+            { id: 'chevron3', cost: 1000, name: '95-я ОДШБр', image: 'https://via.placeholder.com/100?text=95-ОДШБр', bought: localStorage.getItem('chevron3') === 'true', currency: 'uah' },
+            { id: 'chevron4', cost: 1200, name: '79-я ОШБр', image: 'https://via.placeholder.com/100?text=79-ОШБр', bought: localStorage.getItem('chevron4') === 'true', currency: 'uah' },
+            { id: 'chevron5', cost: 1300, name: '80-я ОДШБр', image: 'https://via.placeholder.com/100?text=80-ОДШБр', bought: localStorage.getItem('chevron5') === 'true', currency: 'uah' },
+            { id: 'chevron6', cost: 1400, name: '128-я ОГШБр', image: 'https://via.placeholder.com/100?text=128-ОГШБр', bought: localStorage.getItem('chevron6') === 'true', currency: 'uah' },
+            { id: 'chevron7', cost: 1500, name: '25-я ОПДБр', image: 'https://via.placeholder.com/100?text=25-ОПДБр', bought: localStorage.getItem('chevron7') === 'true', currency: 'uah' },
+            { id: 'chevron8', cost: 1600, name: '54-я ОМБр', image: 'https://via.placeholder.com/100?text=54-ОМБр', bought: localStorage.getItem('chevron8') === 'true', currency: 'uah' },
+            { id: 'chevron9', cost: 7000, name: 'ПВК-СХІД', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFzp_Z7FTq1Di77z8Z5jXSR8HaTmYYOAY4zQ&s', bought: localStorage.getItem('chevron9') === 'true', currency: 'uah' },
+            { id: 'chevron10', cost: 20, name: 'Kraken', image: 'https://upload.wikimedia.org/wikipedia/commons/9/97/Kraken_Special_Unit_Insignia.png', bought: localStorage.getItem('chevron10') === 'true', currency: 'usd' },
+            { id: 'chevron11', cost: 1, name: '17 ОТБР', image: 'https://shevron-print.com.ua/image/cache/catalog/import_yml/178/569/694/2/4320486870-shevron-17-tankovaya-450x450.jpg', bought: localStorage.getItem('chevron11') === 'true', currency: 'btc' },
+            { id: 'chevron12', cost: 2000, name: 'ВРУ України', image: 'https://upload.wikimedia.org/wikipedia/commons/7/79/Emblem_of_the_Defense_Intelligence_of_Ukraine.png', bought: localStorage.getItem('chevron12') === 'true', currency: 'uah' }
+        ];
+        const userId = localStorage.getItem('userId') || Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('userId', userId);
+        const usedPromocodes = JSON.parse(localStorage.getItem('usedPromocodesGlobal')) || [];
+
+        uahElement.textContent = `₴${uah}`;
+        usdElement.textContent = `$ ${usd}`;
+        eurElement.textContent = `€ ${eur}`;
+        btcElement.textContent = `₿ ${btc}`;
+        progressBar.style.width = `${clickStreak}%`;
+
+        function updateBalance() {
+            uahElement.textContent = `₴${uah}`;
+            usdElement.textContent = `$ ${usd}`;
+            eurElement.textContent = `€ ${eur}`;
+            btcElement.textContent = `₿ ${btc}`;
+            localStorage.setItem('coinUah', uah);
+            localStorage.setItem('coinUsd', usd);
+            localStorage.setItem('coinEur', eur);
+            localStorage.setItem('coinBtc', btc);
+        }
+
+        function convertCurrency(amount, from, to) {
+            const rates = { uah: 1, usd: 2000, eur: 6000, btc: 100000 };
+            return Math.floor(amount * rates[from] / rates[to]);
+        }
+
+        function updateButtons() {
+            upgradeButtons.forEach(upgrade => {
+                const button = document.getElementById(upgrade.id);
+                if (upgrade.bought) {
+                    button.textContent = 'Куплено!';
+                    button.disabled = true;
+                    button.classList.remove('active');
+                } else if (uah >= upgrade.cost && !isAnyUpgradeBought(upgrade)) {
+                    button.disabled = false;
+                    button.classList.add('active');
+                } else {
+                    button.disabled = true;
+                    button.classList.remove('active');
+                }
+            });
+            chevronButtons.forEach(chevron => {
+                const button = document.getElementById(chevron.id);
+                let hasEnough = false;
+                if (chevron.currency === 'uah' && uah >= chevron.cost) hasEnough = true;
+                if (chevron.currency === 'usd' && usd >= chevron.cost) hasEnough = true;
+                if (chevron.currency === 'btc' && btc >= chevron.cost) hasEnough = true;
+                if (chevron.bought) {
+                    button.textContent = 'Куплено!';
+                    button.disabled = true;
+                    button.classList.remove('active');
+                } else if (hasEnough) {
+                    button.disabled = false;
+                    button.classList.add('active');
+                } else {
+                    button.disabled = true;
+                    button.classList.remove('active');
+                }
+            });
+            updateInventory();
+        }
+
+        function isAnyUpgradeBought(currentUpgrade) {
+            return upgradeButtons.some(upgrade => upgrade !== currentUpgrade && upgrade.bought);
+        }
+
+        function updateInventory() {
+            inventoryList.innerHTML = '';
+            const boughtChevrons = chevronButtons.filter(chevron => chevron.bought);
+            if (boughtChevrons.length === 0) {
+                inventoryList.innerHTML = '<p>Нет купленных шевронов</p>';
+            } else {
+                boughtChevrons.forEach(chevron => {
+                    const item = document.createElement('div');
+                    item.className = 'chevron';
+                    item.innerHTML = `
+                        <div class="chevron-preview" style="background-image: url(${chevron.image});"></div>
+                        <p>${chevron.name}</p>
+                    `;
+                    inventoryList.appendChild(item);
+                });
+            }
+        }
+
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.style.setProperty('--dx', Math.random() * 2 - 1);
+            particle.style.setProperty('--dy', Math.random() * 2 - 1);
+            particlesContainer.appendChild(particle);
+            setTimeout(() => particle.remove(), 1000);
+        }
+
+        function createExplosionParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'explosion-particle';
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.style.setProperty('--dx', Math.random() * 4 - 2);
+            particle.style.setProperty('--dy', Math.random() * 4 - 2);
+            explosionContainer.appendChild(particle);
+            setTimeout(() => particle.remove(), 1500);
+        }
+
+        function showExplosion(x, y) {
+            for (let i = 0; i < 30; i++) {
+                createExplosionParticle(x, y);
+            }
+        }
+
+        function showTank() {
+            const angle = Math.random() * 360;
+            tank.style.transform = `rotate(${angle}deg)`;
+            tank.classList.add('active');
+            setTimeout(() => tank.classList.remove('active'), 2000);
+        }
+
+        coin.addEventListener('click', (e) => {
+            uah += clickValue;
+            updateBalance();
+            clickStreak++;
+            coin.classList.add('spin');
+            setTimeout(() => coin.classList.remove('spin'), 500);
+            progressBar.style.width = `${clickStreak}%`;
+            if (clickStreak >= 100) {
+                const rect = coin.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                showExplosion(centerX, centerY);
+                showTank();
+                uah += 1000;
+                updateBalance();
+                clickStreak = 0;
+                progressBar.style.width = '0%';
+            }
+            clearTimeout(streakTimeout);
+            streakTimeout = setTimeout(() => {
+                clickStreak = 0;
+                progressBar.style.width = '0%';
+            }, 2000);
+            const rect = coin.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            for (let i = 0; i < 5; i++) {
+                createParticle(centerX + Math.random() * 20 - 10, centerY + Math.random() * 20 - 10);
+            }
+            updateButtons();
+        });
+
+        upgradeButtons.forEach(upgrade => {
+            const button = document.getElementById(upgrade.id);
+            button.addEventListener('click', () => {
+                if (uah >= upgrade.cost && !upgrade.bought && !isAnyUpgradeBought(upgrade)) {
+                    uah -= upgrade.cost;
+                    clickValue = upgrade.value;
+                    upgrade.bought = true;
+                    updateBalance();
+                    localStorage.setItem('clickValue', clickValue);
+                    localStorage.setItem(upgrade.id, 'true');
+                    button.textContent = 'Куплено!';
+                    button.classList.add('bought');
+                    updateButtons();
+                }
+            });
+        });
+
+        chevronButtons.forEach(chevron => {
+            const button = document.getElementById(chevron.id);
+            button.addEventListener('click', () => {
+                let hasEnough = false;
+                if (chevron.currency === 'uah' && uah >= chevron.cost) hasEnough = true;
+                if (chevron.currency === 'usd' && usd >= chevron.cost) hasEnough = true;
+                if (chevron.currency === 'btc' && btc >= chevron.cost) hasEnough = true;
+                if (hasEnough && !chevron.bought) {
+                    if (chevron.currency === 'uah') uah -= chevron.cost;
+                    if (chevron.currency === 'usd') usd -= chevron.cost;
+                    if (chevron.currency === 'btc') btc -= chevron.cost;
+                    chevron.bought = true;
+                    updateBalance();
+                    localStorage.setItem(chevron.id, 'true');
+                    button.textContent = 'Куплено!';
+                    button.classList.add('bought');
+                    updateButtons();
+                }
+            });
+        });
+
+        function updateBonusButton() {
+            if (!bonusButton) {
+                console.error('Bonus button not found');
+                return;
+            }
+            if (bonusTimer <= 0) {
+                bonusButton.disabled = false;
+                bonusButton.classList.add('active');
+                bonusButton.textContent = 'Получить';
+            } else {
+                bonusButton.disabled = true;
+                bonusButton.classList.remove('active');
+                bonusButton.textContent = `Получить (${bonusTimer} сек)`;
+            }
+        }
+
+        setInterval(() => {
+            if (bonusTimer > 0) {
+                bonusTimer--;
+                localStorage.setItem('bonusTimer', bonusTimer);
+                updateBonusButton();
+            }
+        }, 1000);
+
+        bonusButton.addEventListener('click', () => {
+            if (bonusTimer <= 0) {
+                uah += 150;
+                updateBalance();
+                bonusTimer = 60;
+                localStorage.setItem('bonusTimer', bonusTimer);
+                bonusButton.classList.add('bought');
+                setTimeout(() => bonusButton.classList.remove('bought'), 500);
+                updateButtons();
+                updateBonusButton();
+            }
+        });
+
+        placeBet.addEventListener('click', () => {
+            const bet = parseInt(betAmount.value) || 0;
+            if (bet >= 10 && uah >= bet) {
+                uah -= bet;
+                updateBalance();
+                const multiplier = Math.random() < 0.5 ? 0 : (Math.random() * 2 + 0.5);
+                const win = Math.floor(bet * multiplier);
+                casinoEffect.innerHTML = '';
+                if (win > 0) {
+                    uah += win;
+                    casinoResult.textContent = `Вы выиграли: ₴${win}!`;
+                    casinoResult.classList.add('win');
+                    for (let i = 0; i < 20; i++) {
+                        const effectParticle = document.createElement('div');
+                        effectParticle.className = 'casino-effect-particle';
+                        effectParticle.style.left = `50%`;
+                        effectParticle.style.top = `50%`;
+                        effectParticle.style.setProperty('--dx', Math.random() * 4 - 2);
+                        effectParticle.style.setProperty('--dy', Math.random() * 4 - 2);
+                        casinoEffect.appendChild(effectParticle);
+                        setTimeout(() => effectParticle.remove(), 1500);
+                    }
+                } else {
+                    casinoResult.textContent = 'Вы проиграли!';
+                    casinoResult.classList.add('lose');
+                }
+                updateBalance();
+            } else {
+                casinoResult.textContent = 'Недостаточно средств или ставка меньше 10 ₴!';
+                casinoResult.classList.add('error');
+            }
+        });
+
+        convertButton.addEventListener('click', () => {
+            const amount = parseFloat(convertAmount.value) || 0;
+            const from = fromCurrency.value;
+            const to = toCurrency.value;
+            const result = convertCurrency(amount, from, to);
+            convertResult.textContent = `${amount} ${from.toUpperCase()} = ${result} ${to.toUpperCase()}`;
+            convertResult.style.opacity = '0';
+            setTimeout(() => {
+                convertResult.style.transition = 'opacity 0.5s ease';
+                convertResult.style.opacity = '1';
+            }, 10);
+        });
+
+        redeemPromo.addEventListener('click', () => {
+            const code = promoInput.value.trim().toLowerCase();
+            if (usedPromocodes.includes(code)) {
+                promoResult.textContent = 'Этот промокод уже использован!';
+                return;
+            }
+            if (code === 'safetest') {
+                const chevron24 = chevronButtons.find(c => c.id === 'chevron2');
+                const chevron3 = chevronButtons.find(c => c.id === 'chevron1');
+                if (!chevron24.bought) {
+                    chevron24.bought = true;
+                    localStorage.setItem(chevron24.id, 'true');
+                }
+                uah += 1000;
+                if (chevron3.bought) {
+                    uah += 1000;
+                    promoResult.textContent = 'Промокод активирован! Вы получили 2000 гривен (компенсация за 3-ю ОШБр)!';
+                } else {
+                    promoResult.textContent = 'Промокод активирован! Вы получили шеврон 24-й ОМБр и 1000 гривен!';
+                }
+                updateBalance();
+                localStorage.setItem('coinUah', uah);
+                usedPromocodes.push(code);
+                localStorage.setItem('usedPromocodesGlobal', JSON.stringify(usedPromocodes));
+                updateButtons();
+            } else {
+                promoResult.textContent = 'Неверный промокод!';
+            }
+            promoInput.value = '';
+        });
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = tab.id === tabId ? 'block' : 'none';
+            });
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('onclick').includes(tabId));
+            });
+        }
+
+        window.onload = () => {
+            coin.classList.add('floating');
+            updateButtons();
+            updateBonusButton();
+            updateInventory();
+        };
+    </script>
+</body>
+</html>
